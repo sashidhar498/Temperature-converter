@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+      .bg-image {
+        background-image: url('https://www.wallpapertip.com/wmimgs/56-567419_1920x1080-wallpaper-black-blue-gradient-linear-medium-blue.jpg');
+        background-repeat: repeat;
+        background-size: cover;
+      }
+      .convert-btn {
+        background-color: #6b7280;
+      }
+      .convert-btn:hover {
+        background-color: #4b5563;
+      }
+      .reset-btn {
+        background-color: #ef4444;
+      }
+      .reset-btn:hover {
+        background-color: #dc2626;
+      }
+      
+      /* Media query for screens with width less than 768px */
+      @media (max-width: 500px) {
+        .flex-wrap {
+          flex-wrap: wrap;
+        }
+        .px-2 {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+        .w-full {
+          width: 100%;
+        }
+      }
+      
+    </style>
+  </head>
+  <body class="bg-image py-10 place-items-center">
+    <div class="container mx-auto px-4">
+      <h1 class="text-3xl font-bold mb-5 text-center text-white">Temperature Converter</h1>
+      <p class="text-xl text-center text-white mb-10">Enter a temperature in either Celsius or Fahrenheit and click "Convert" to see the corresponding temperature.</p>
+      <div class="flex flex-wrap -mx-2 justify-center">
+        <div class="w-full md:w-1/2 px-2 mb-4">
+          <label for="celsius" class="block text-gray-700 font-bold mb-2 text-white">Celsius:</label>
+          <div class="relative">
+            <input type="number" id="celsius" name="celsius" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100" placeholder="Enter Celsius temperature">
+            <span class="absolute top-0 right-0 px-2 py-1 text-xs text-gray-600">°C</span>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2 px-2 mb-4">
+          <label for="fahrenheit" class="block text-gray-700 font-bold mb-2 text-white">Fahrenheit:</label>
+          <div class="relative">
+            <input type="number" id="fahrenheit" name="fahrenheit" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-100" placeholder="Enter Fahrenheit temperature">
+            <span class="absolute top-0 right-0 px-2 py-1 text-xs text-gray-600">°F</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-center mt-4">
+        <div class="flex justify-center mt-4">
+  <button onclick="convertTemperature()" class="convert-btn focus:outline-none text-white font-bold py-2 px-4 rounded">
+    Convert
+  </button>
+  <button onclick="resetTemperature()" class="reset-btn mx-4 focus:outline-none text-white font-bold py-2 px-4 rounded">
+    Reset
+  </button>
+</div>
+
+      </div>
+    </div>
+    <script>
+    function convertTemperature() {
+      var celsius = parseFloat(document.getElementById("celsius").value);
+      var fahrenheit = parseFloat(document.getElementById("fahrenheit").value);
+            
+      if (!isNaN(celsius)) {
+        fahrenheit = (celsius * 1.8) + 32;
+        document.getElementById("fahrenheit").value = fahrenheit.toFixed(2);
+      } else if (!isNaN(fahrenheit)) {
+        celsius = (fahrenheit - 32) / 1.8;
+        document.getElementById("celsius").value = celsius.toFixed(2);
+      }
+    }
+    
+    function resetTemperature() {
+      document.getElementById("celsius").value = "";
+      document.getElementById("fahrenheit").value = "";
+    }
+    
+    </script>
+  </body>
+</html>
